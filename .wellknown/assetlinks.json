@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.opentext.m.content.core",
+    "sha256_cert_fingerprints":
+    ["8A:4D:2E:E2:8C:86:E4:6A:DD:C5:5C:4E:40:5C:B0:A1:7F:E1:39:D2:5F:C7:5A:AA:29:6A:0D:AB:9D:97:F1:23"]
+  }
+}]
