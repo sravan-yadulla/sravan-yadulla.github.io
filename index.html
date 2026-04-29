@@ -1,92 +1,556 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="viewport" content="initial-scale=1, user-scalable=0, maximum-scale=1" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="/folder/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	
-	<title>Puzzle</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sravan Kumar Reddy Yadulla — Lead Software Engineer</title>
+  <meta name="description" content="Sravan Kumar Reddy Yadulla — Lead Software Engineer at OpenText specializing in Android, Kotlin, and scalable mobile architecture." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1e293b;
+      background: #f8fafc;
+      line-height: 1.6;
+    }
+    a { color: #2563eb; text-decoration: none; transition: color .2s; }
+    a:hover { color: #1d4ed8; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Layout ───────────────────────────────────────── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 4rem 0; }
+
+    /* ── Navigation ───────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e2e8f0;
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    nav .logo { font-weight: 700; font-size: 1.15rem; color: #0f172a; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul a { font-size: .9rem; font-weight: 500; color: #475569; }
+    nav ul a:hover { color: #2563eb; }
+
+    /* ── Hero ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+      color: #fff;
+      padding: 6rem 0 5rem;
+      text-align: center;
+    }
+    .hero .profile-pic {
+      width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+      border: 4px solid rgba(255,255,255,.2); margin: 0 auto 1.5rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+    }
+    .hero h1 { font-size: 2.75rem; font-weight: 700; margin-bottom: .5rem; }
+    .hero .subtitle { font-size: 1.25rem; color: #94a3b8; margin-bottom: 1.5rem; }
+    .hero p { max-width: 620px; margin: 0 auto 2rem; color: #cbd5e1; font-size: 1.05rem; }
+    .hero .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: .7rem 1.6rem; border-radius: 8px;
+      font-weight: 600; font-size: .95rem; transition: background .2s, transform .15s;
+    }
+    .btn:active { transform: scale(.97); }
+    .btn-primary { background: #2563eb; color: #fff; }
+    .btn-primary:hover { background: #1d4ed8; color: #fff; }
+    .btn-outline { border: 1.5px solid #94a3b8; color: #e2e8f0; }
+    .btn-outline:hover { border-color: #fff; color: #fff; }
+
+    /* ── Section Headings ─────────────────────────────── */
+    .section-title {
+      font-size: 1.75rem; font-weight: 700; margin-bottom: .25rem;
+    }
+    .section-subtitle {
+      color: #64748b; margin-bottom: 2.5rem; font-size: 1rem;
+    }
+
+    /* ── About ────────────────────────────────────────── */
+    #about .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    }
+    .info-card {
+      background: #fff; border-radius: 12px; padding: 1.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
+      border-top: 3px solid #2563eb;
+    }
+    .info-card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+    .info-card p, .info-card ul { color: #475569; font-size: .95rem; }
+    .info-card ul { padding-left: 1.2rem; }
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .stat-item {
+      text-align: center; background: #fff; border-radius: 12px; padding: 1.5rem 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    }
+    .stat-item .stat-number {
+      font-size: 2rem; font-weight: 700; color: #2563eb; display: block;
+    }
+    .stat-item .stat-label {
+      font-size: .85rem; color: #64748b; margin-top: .25rem;
+    }
+
+    /* ── Skills ───────────────────────────────────────── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;
+    }
+    .skill-card {
+      background: #fff; border-radius: 12px; padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: transform .2s;
+    }
+    .skill-card:hover { transform: translateY(-3px); }
+    .skill-card h3 { font-size: 1.05rem; margin-bottom: .75rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      background: #eff6ff; color: #2563eb; font-size: .8rem; font-weight: 500;
+      padding: .3rem .75rem; border-radius: 999px;
+    }
+
+    /* ── Experience Timeline ──────────────────────────── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 7px; top: 0; bottom: 0;
+      width: 2px; background: #e2e8f0;
+    }
+    .timeline-item { position: relative; margin-bottom: 2.5rem; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -2rem; top: 6px;
+      width: 14px; height: 14px; background: #2563eb; border-radius: 50%;
+      border: 3px solid #eff6ff;
+    }
+    .timeline-item h3 { font-size: 1.1rem; }
+    .timeline-item .meta { color: #64748b; font-size: .9rem; margin-bottom: .5rem; }
+    .timeline-item p, .timeline-item ul { color: #475569; font-size: .95rem; }
+    .timeline-item ul { padding-left: 1.2rem; margin-top: .5rem; }
+
+    /* ── Projects ─────────────────────────────────────── */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
+    }
+    .project-card {
+      background: #fff; border-radius: 12px; padding: 1.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
+      display: flex; flex-direction: column;
+      border-left: 4px solid #2563eb;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+    .project-card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+    .project-card p { color: #475569; font-size: .95rem; flex: 1; }
+    .project-card .tags { margin-top: 1rem; }
+    .project-card .project-icon {
+      font-size: 1.75rem; margin-bottom: .75rem;
+    }
+
+    /* ── Contact ──────────────────────────────────────── */
+    #contact { text-align: center; }
+    .contact-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .65rem 1.4rem; border-radius: 8px;
+      background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.08);
+      font-weight: 500; font-size: .95rem; color: #1e293b; transition: box-shadow .2s;
+    }
+    .contact-link:hover { box-shadow: 0 4px 12px rgba(0,0,0,.1); color: #2563eb; }
+    .contact-link svg { width: 20px; height: 20px; }
+
+    /* ── Footer ───────────────────────────────────────── */
+    footer {
+      text-align: center; padding: 2rem 0;
+      color: #94a3b8; font-size: .85rem; border-top: 1px solid #e2e8f0;
+    }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      #about .about-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      nav ul { gap: 1rem; }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1><span class="offscreen">Space Puzzle</span></h1>
-    <button id="shuffle">New Game</button>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <span class="logo">SY</span>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <img src="profile.jpg" alt="Sravan Kumar Reddy Yadulla" class="profile-pic" />
+      <h1>Sravan Kumar Reddy Yadulla</h1>
+      <p class="subtitle">Lead Software Engineer</p>
+      <p>
+        Experienced Android app engineer with a demonstrated history of resolving problems
+        and driving overall operational improvements. Leading engineering teams at
+        <strong style="color:#fff;">OpenText</strong> to deliver robust enterprise products
+        with clean architecture and modern development practices.
+      </p>
+      <div class="cta-group">
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+        <a href="#experience" class="btn btn-outline">View Experience</a>
+      </div>
+    </div>
   </header>
-  
-  <div id="board-wrapper"></div>
 
-  <script src="/folder/js/app.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/folder/js/utils.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/folder/js/piece.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/folder/js/board.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/folder/js/puzzle.js" type="text/javascript" charset="utf-8"></script>
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">A snapshot of who I am and what I bring to the table.</p>
+      <div class="about-grid">
+        <div class="info-card">
+          <h3>👤 Profile</h3>
+          <p>
+            Lead Software Engineer at OpenText with 14+ years of experience in Android &amp;
+            mobile development, architecture design, and team leadership. Strong engineering
+            professional skilled in Android, Kotlin, Java, SpringBoot, Unix, Jenkins, AWS,
+            and Python. Effective coach and mentor, well committed to leading exceptionally
+            gifted teams. Always on the hook of learning and implementing new trends in
+            software development.
+          </p>
+        </div>
+        <div class="info-card">
+          <h3>🎯 Focus Areas</h3>
+          <ul>
+            <li>Android Application Development (Kotlin &amp; Jetpack Compose)</li>
+            <li>Clean &amp; Multi-Module Architecture</li>
+            <li>CI/CD Pipelines &amp; Google Play Deployments</li>
+            <li>Information Security &amp; OWASP</li>
+            <li>Technical Leadership &amp; Mentoring</li>
+            <li>REST API Integrations &amp; Cloud Services</li>
+            <li>Agile &amp; Cross-Functional Collaboration</li>
+          </ul>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-number">14+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Companies</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">20+</span>
+          <span class="stat-label">Apps Delivered</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Engineers Mentored</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" style="background:#fff;">
+    <div class="container">
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-subtitle">Technologies and tools I work with every day.</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Languages</h3>
+          <div class="tags">
+            <span class="tag">Kotlin</span>
+            <span class="tag">Java</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Android &amp; Mobile</h3>
+          <div class="tags">
+            <span class="tag">Jetpack Compose</span>
+            <span class="tag">Android SDK</span>
+            <span class="tag">Android Studio</span>
+            <span class="tag">Coroutines &amp; Flow</span>
+            <span class="tag">Room</span>
+            <span class="tag">Hilt / Koin</span>
+            <span class="tag">Navigation</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Architecture &amp; Patterns</h3>
+          <div class="tags">
+            <span class="tag">Clean Architecture</span>
+            <span class="tag">MVI / MVVM</span>
+            <span class="tag">Multi-Module</span>
+            <span class="tag">Repository Pattern</span>
+            <span class="tag">SOLID</span>
+            <span class="tag">REST APIs</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Testing &amp; Security</h3>
+          <div class="tags">
+            <span class="tag">JUnit 5</span>
+            <span class="tag">MockK</span>
+            <span class="tag">Espresso</span>
+            <span class="tag">Paparazzi</span>
+            <span class="tag">OWASP</span>
+            <span class="tag">Information Security</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>DevOps &amp; Cloud</h3>
+          <div class="tags">
+            <span class="tag">Jenkins</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">AWS</span>
+            <span class="tag">Gradle (Kotlin DSL)</span>
+            <span class="tag">SonarQube</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">Unix</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Backend &amp; Collaboration</h3>
+          <div class="tags">
+            <span class="tag">SpringBoot</span>
+            <span class="tag">Git / GitHub</span>
+            <span class="tag">Jira</span>
+            <span class="tag">Confluence</span>
+            <span class="tag">Agile / Scrum</span>
+            <span class="tag">AI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title">Professional Experience</h2>
+      <p class="section-subtitle">Key roles and contributions throughout my career.</p>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <h3>Lead Software Engineer</h3>
+          <p class="meta">OpenText &bull; March 2022 &ndash; Present &bull; Hyderabad, India</p>
+          <ul>
+            <li>Responsible for a native Android app which is an integral part of OpenText cloud offerings.</li>
+            <li>Takes care of integrations with other services, implementation approaches, and REST APIs.</li>
+            <li>Manages CI/CD pipelines, code reviews, and code coverage with comprehensive test cases.</li>
+            <li>Handles Google Play deployments and involves in release/feature planning.</li>
+            <li>Architected migration from legacy XML views to Jetpack Compose, improving developer velocity.</li>
+            <li>Drove adoption of Kotlin Coroutines, Flow, and MVI pattern across the codebase.</li>
+            <li>Implemented modularisation strategy (App → Feature → Component → Common) reducing build times significantly.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Principal Software Engineer</h3>
+          <p class="meta">GGK Tech &bull; March 2017 &ndash; February 2022 &bull; Hyderabad, India</p>
+          <ul>
+            <li>Designed and implemented core features for enterprise mobile applications.</li>
+            <li>Introduced dependency injection and modular architecture to improve code quality and build times.</li>
+            <li>Improved unit test coverage and established best practices across the team.</li>
+            <li>Collaborated with backend, UX, and QA teams in an Agile environment.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Android Application Developer</h3>
+          <p class="meta">Riktam Technologies &bull; July 2011 &ndash; March 2017 &bull; Hyderabad, India</p>
+          <ul>
+            <li>Requirement analysis and estimations for mobile projects.</li>
+            <li>Managed a team of developers and mentored team members.</li>
+            <li>Developed and deployed multiple Android applications from concept to Play Store release.</li>
+            <li>Integrated RESTful APIs and implemented Material Design components.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects & Expertise -->
+  <section id="projects" style="background:#fff;">
+    <div class="container">
+      <h2 class="section-title">Project &amp; Key Responsibilities</h2>
+      <p class="section-subtitle">The product I lead and the areas I own end-to-end.</p>
+
+      <!-- Main Project -->
+      <div class="project-card" style="margin-bottom: 2.5rem; border-left-width: 5px;">
+        <div class="project-icon">📱</div>
+        <h3>OpenText Content Management — Android</h3>
+        <p>
+          Lead development of a large-scale enterprise Android app for OpenText Content
+          Management with offline support, secure document handling, workspace navigation,
+          and multi-module architecture. Integral part of OpenText cloud offerings serving
+          thousands of enterprise users globally.
+        </p>
+        <div class="tags">
+          <span class="tag">Kotlin</span>
+          <span class="tag">Compose</span>
+          <span class="tag">Room</span>
+          <span class="tag">Hilt / Koin</span>
+          <span class="tag">MVI</span>
+          <span class="tag">REST APIs</span>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=com.opentext.m.content.core" target="_blank" style="display:inline-flex; align-items:center; gap:.5rem; margin-top:1.25rem; font-weight:600; font-size:.9rem; color:#2563eb;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.61-.92zm.58-.564l11.2 6.3-2.8 2.8zm0 21.5l8.4-8.4 2.8 2.8zm12.64-14.2L20.4 10.8a1 1 0 010 1.73l-3.57 2.25L14.05 12z"/></svg>
+          View on Google Play
+        </a>
+      </div>
+
+      <!-- Responsibility Areas -->
+      <h3 style="font-size:1.25rem; font-weight:600; margin-bottom:1.5rem; color:#0f172a;">Areas of Responsibility</h3>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-icon">⚙️</div>
+          <h3>CI/CD &amp; Play Store Automation</h3>
+          <p>
+            Own end-to-end CI/CD workflows — build, test, lint,
+            screenshot testing (Paparazzi), and Google Play deployment automation.
+            Continuously optimise pipelines for faster feedback loops and reliable releases.
+          </p>
+          <div class="tags">
+            <span class="tag">Jenkins</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Gradle</span>
+            <span class="tag">SonarQube</span>
+            <span class="tag">Fastlane</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🏗️</div>
+          <h3>Software Architecture &amp; Modularisation</h3>
+          <p>
+            Responsible for the overall app architecture — Clean Architecture with
+            multi-module layering (App → Feature → Component → Common), Gradle Convention
+            Plugins, dependency management, and ensuring scalable design across 30+ modules.
+          </p>
+          <div class="tags">
+            <span class="tag">Clean Architecture</span>
+            <span class="tag">Convention Plugins</span>
+            <span class="tag">Kotlin DSL</span>
+            <span class="tag">KSP</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🔒</div>
+          <h3>Secure Coding &amp; OWASP Compliance</h3>
+          <p>
+            Ensure the app adheres to OWASP Mobile Top 10 — encrypted storage,
+            certificate pinning, biometric authentication, Android Keystore integration,
+            runtime integrity checks, R8/ProGuard obfuscation, and threat modelling.
+          </p>
+          <div class="tags">
+            <span class="tag">OWASP Top 10</span>
+            <span class="tag">Android Keystore</span>
+            <span class="tag">Biometric API</span>
+            <span class="tag">R8 / ProGuard</span>
+            <span class="tag">Cert Pinning</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🤖</div>
+          <h3>AI-Powered Development &amp; Tooling</h3>
+          <p>
+            Champion adoption of AI tools across the team — GitHub Copilot for code
+            generation, ChatGPT/Gemini for design discussions and documentation,
+            AI-assisted code reviews, and prompt-engineered test generation pipelines.
+          </p>
+          <div class="tags">
+            <span class="tag">GitHub Copilot</span>
+            <span class="tag">ChatGPT</span>
+            <span class="tag">Gemini</span>
+            <span class="tag">Prompt Engineering</span>
+            <span class="tag">AI Code Review</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Certifications -->
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title">Education &amp; Certifications</h2>
+      <p class="section-subtitle">Academic background and professional credentials.</p>
+      <div class="about-grid">
+        <div class="info-card">
+          <h3>🎓 Education</h3>
+          <p><strong>Master of Computer Applications (M.C.A.)</strong></p>
+          <p>Computer Science &amp; Programming</p>
+          <p style="color:#64748b; margin-top:.25rem;">Bankatlal Badruka College For Information Technology &bull; 2008 &ndash; 2011</p>
+        </div>
+        <div class="info-card">
+          <h3>📜 Certifications</h3>
+          <ul>
+            <li>Project Management Essentials Certified (PMEC)™</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="section-subtitle">I'm always open to discussing new opportunities, ideas, or collaborations.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:yadullasravankumar@gmail.com">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0l-9.75 6.25L2.25 6.75"/></svg>
+          Email
+        </a>
+        <a class="contact-link" href="https://in.linkedin.com/in/sravan-yadulla" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+          LinkedIn
+        </a>
+        <a class="contact-link" href="tel:+919666312508">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+          Phone
+        </a>
+        <a class="contact-link" href="https://github.com/sravan-yadulla" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 00-3.8 23.38c.6.12.83-.26.83-.57v-2.23c-3.34.73-4.03-1.42-4.03-1.42a3.18 3.18 0 00-1.33-1.76c-1.09-.74.08-.73.08-.73a2.52 2.52 0 011.84 1.24 2.56 2.56 0 003.49 1 2.54 2.54 0 01.76-1.61c-2.67-.3-5.47-1.33-5.47-5.93a4.64 4.64 0 011.24-3.22 4.3 4.3 0 01.12-3.18s1-.32 3.3 1.23a11.38 11.38 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23a4.3 4.3 0 01.12 3.18 4.64 4.64 0 011.24 3.22c0 4.61-2.81 5.63-5.48 5.93a2.86 2.86 0 01.82 2.22v3.29c0 .31.22.69.83.57A12 12 0 0012 .3z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Sravan Kumar Reddy Yadulla. All rights reserved.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
 
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-}
-
-.title {
-  color: grey;
-  font-size: 18px;
-}
-
-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-button:hover, a:hover {
-  opacity: 0.7;
-}
-</style>
-</head>
-<body>
-
-<h2 style="text-align:center">My Profile Card</h2>
-
-<div class="card">
-  <img src="/folder/25.jpg" alt="John" style="width:100%">
-  <h1>Sravan Kumar Yadulla</h1>
-  <p class="title">Busy Coder</p>
-  <p>Hyderabad, India</p>
-  <div style="margin: 24px 0;">
-    <a href="#"><i class="fa fa-dribbble"></i></a> 
-    <a href="#"><i class="fa fa-twitter"></i></a>  
-    <a href="#"><i class="fa fa-linkedin"></i></a>  
-    <a href="#"><i class="fa fa-facebook"></i></a> 
- </div>
- <p><button>Contact</button></p>
-</div>
-
-</body>
-</html>
- -->
